@@ -4,27 +4,35 @@ import UseContext from '../../Context/CustomHook/UseContext'
 import { useNavigate } from 'react-router-dom'
 import GoogleLogin from '../../SharedFiles/GoogleLogin'
 import { toast } from 'react-toastify'
+import Swal from 'sweetalert2'
 
 const Login = () => {
-    const { signInUser} = UseContext()
-    const navigate = useNavigate()
+  const { signInUser } = UseContext()
+  const navigate = useNavigate()
 
-    const handleSignIn = (e) =>{
-        e.preventDefault()
-        const data = new FormData(e.target)
-        const registerData = Object.fromEntries(data.entries())
+  const handleSignIn = (e) => {
+    e.preventDefault()
+    const data = new FormData(e.target)
+    const registerData = Object.fromEntries(data.entries())
 
-        signInUser(registerData.email,registerData.password)
-        .then(credential=>{
-            navigate('/')
-            console.log(credential.user)
-        })
-        .catch((error)=>{
-          toast.error("An error occurred. Please try again later.", {
-            position: 'top-center',
-          });
-        })
-    }
+    signInUser(registerData.email, registerData.password)
+      .then(credential => {
+        navigate('/')
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login Successful!",
+          showConfirmButton: false,
+          timer: 2000
+        });
+        console.log(credential.user)
+      })
+      .catch((error) => {
+        toast.error("An error occurred. Please try again later.", {
+          position: 'top-center',
+        });
+      })
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
