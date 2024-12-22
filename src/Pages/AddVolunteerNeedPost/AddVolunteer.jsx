@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import DatePicker from 'react-datepicker';
 import UseContext from '../../Context/CustomHook/UseContext';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const AddVolunteer = () => {
@@ -10,12 +12,25 @@ const AddVolunteer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.target)
-    const formData = Object.fromEntries(data.entries())
+    const datas = new FormData(e.target)
+    const formData = Object.fromEntries(datas.entries())
     formData.organizer_name = user?.displayName,
       formData.organizer_email = user?.email,
-      formData.date = startDate,
-    console.log(formData)
+      formData.date = startDate
+
+    const { data } = axios.post(`${import.meta.env.VITE_API_URL}/addVolunteers`, formData)
+      .then(res => {
+        if (res.data?.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Login Successful!",
+            showConfirmButton: false,
+            timer: 2000
+          });
+        }
+      })
+      e.target.reset();
   };
 
   return (
@@ -94,7 +109,7 @@ const AddVolunteer = () => {
           </label>
           <input
             type="number"
-            name='number'
+            name='volunteersNeeded'
             placeholder="Enter number of volunteers"
             className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
             required
@@ -147,7 +162,7 @@ const AddVolunteer = () => {
         <div className="text-center">
           <button
             type="submit"
-            className="bg-blue-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-600 focus:ring focus:ring-blue-300"
+            className="bg-blue-500 text-white font-medium w-full py-2 px-4 rounded-lg hover:bg-blue-600 focus:ring focus:ring-blue-300"
           >
             Add Post
           </button>

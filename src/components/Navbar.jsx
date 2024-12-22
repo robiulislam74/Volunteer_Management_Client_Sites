@@ -76,7 +76,7 @@ const Navbar = () => {
                     <div data-tooltip-id="my-tooltip-2" className="w-20 rounded-full border-2 border-green-500">
                       <img
                         className='inline-block'
-                        src={user?.photoURL}
+                        src={user.photoURL}
                         alt="Navbar-profile-photo" />
                     </div>
                   </div>
