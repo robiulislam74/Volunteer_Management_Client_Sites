@@ -1,7 +1,7 @@
 import Lottie from 'lottie-react'
 import singIn_Lotte from '../../assets/lotteFiles/signIn_lotte.json'
 import UseContext from '../../Context/CustomHook/UseContext'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import GoogleLogin from '../../SharedFiles/GoogleLogin'
 import { toast } from 'react-toastify'
 import Swal from 'sweetalert2'
@@ -9,6 +9,8 @@ import Swal from 'sweetalert2'
 const Login = () => {
   const { signInUser } = UseContext()
   const navigate = useNavigate()
+  const location = useLocation()
+ const path = location.state || "/"
 
   const handleSignIn = (e) => {
     e.preventDefault()
@@ -17,7 +19,6 @@ const Login = () => {
 
     signInUser(registerData.email, registerData.password)
       .then(credential => {
-        navigate('/')
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -25,6 +26,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 2000
         });
+        navigate(path)
         console.log(credential.user)
       })
       .catch((error) => {

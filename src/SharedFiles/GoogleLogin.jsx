@@ -2,16 +2,26 @@ import { div } from 'motion/react-client';
 import React from 'react'
 import { FcGoogle } from "react-icons/fc";
 import UseContext from '../Context/CustomHook/UseContext';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const GoogleLogin = () => {
     const {handleGoogleLogin}=UseContext()
     const navigate = useNavigate()
+    const location = useLocation()
+    const path = location.state || "/"
 
     const handleGoogleBtn =()=>{
         handleGoogleLogin()
         .then(result=>{
-            navigate('/')
+            navigate(path)
+             Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "Login Successful!",
+                      showConfirmButton: false,
+                      timer: 2000
+                    });
             console.log("Google Login Successful:",result.user)
         }).catch((error)=>{
             console.log("Error:",error.message)

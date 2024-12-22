@@ -3,10 +3,9 @@ import { NavLink } from 'react-router-dom'
 import logo from '../assets/images/volunteer-1.png'
 import UseContext from '../Context/CustomHook/UseContext'
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import { h2 } from 'motion/react-client';
 
 const Navbar = () => {
-  const { user, signOutFunc,loading } = UseContext()
+  const { user, signOutFunc } = UseContext()
 
   const handleLogOut = () => {
     signOutFunc()
@@ -17,7 +16,7 @@ const Navbar = () => {
       });
   }
 
-  const links = <div className='flex items-center text-base font-medium text-gray-600 space-x-6'>
+  const links = <div className='flex navItem items-center text-base font-medium text-gray-600 space-x-6'>
     <NavLink to={"/"}><li>Home</li></NavLink>
     <NavLink to={"/allVolunteer"}><li>All volunteer Need posts</li></NavLink>
   </div>
@@ -75,21 +74,25 @@ const Navbar = () => {
                 <div className="dropdown dropdown-end">
                   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div data-tooltip-id="my-tooltip-2" className="w-20 rounded-full border-2 border-green-500">
-                      <img 
-                      className='inline-block'
-                      src={user?.photoURL} 
-                      alt="Navbar-profile-photo" />
+                      <img
+                        className='inline-block'
+                        src={user?.photoURL}
+                        alt="Navbar-profile-photo" />
                     </div>
                   </div>
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm text-lg font-medium text-gray-700 dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                    <li>
-                      <a>
+                    className="menu p-4 space-y-3 menu-sm drop text-left font-medium text-gray-700 dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 shadow">
+                    <NavLink to={'/addVolunteer'}>
+                      <li className='hover:text-blue-700 hover:font-medium'>
                         Add Volunteer need Post
-                      </a>
-                    </li>
-                    <li><a>Manage My Posts </a></li>
+                      </li>
+                    </NavLink>
+                    <NavLink to={'managePost'}>
+                      <li className='hover:text-blue-700 hover:font-medium'>
+                        Manage My Posts
+                      </li>
+                    </NavLink>
                   </ul>
                 </div>
                 <div>

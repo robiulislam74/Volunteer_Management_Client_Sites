@@ -6,11 +6,24 @@
 @tailwind utilities;
 
 body{
-  font-family: "Roboto", serif;
+  font-family: "Roboto", serif; 
+  background-color: #FAFAFA;;
 }
 
-.active {
+.navItem .active li{
   color: blue;
   font-weight: 600;
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  border: 1px solid blue;
+  padding: 4px 6px;
+  border-radius: 6px;
+  background-color: #E5D9F2;
 }
+.drop .active li{
+  color: blue;
+}
+
+
+/* .active li{
+  padding: 4px;
+} */
