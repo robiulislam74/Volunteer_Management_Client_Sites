@@ -22,9 +22,9 @@ const GoogleLogin = () => {
                       showConfirmButton: false,
                       timer: 2000
                     });
-            console.log("Google Login Successful:",result.user)
+            // console.log("Google Login Successful:",result.user)
         }).catch((error)=>{
-            console.log("Error:",error.message)
+            // console.log("Error:",error.message)
         })
     }
   return (

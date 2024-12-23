@@ -23,7 +23,7 @@ const Registration = () => {
         const data = new FormData(e.target)
         const registerData = Object.fromEntries(data.entries())
 
-        if (registerData.name == '' || registerData.email == '' || registerData.photoURL == '' || registerData.password == '') {
+        if (registerData.name == '' || registerData.email == '' || registerData.photoUrl == '' || registerData.password == '') {
             return toast.error("Please fulfill your from and Try Again !", {
                 position: "top-center"
             });
@@ -63,10 +63,10 @@ const Registration = () => {
                     // ...
                 });
 
-                console.log(credential.user)
+                // console.log(credential.user)
             })
             .catch((error) => {
-                console.log(error.message)
+                // console.log(error.message)
             })
 
     }

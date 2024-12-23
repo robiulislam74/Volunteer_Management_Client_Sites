@@ -27,8 +27,9 @@ import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
           element: <Login/>
         },
         {
-          path: '/allVolunteer',
-          element: <AllVolunteerNeedPost/>
+          path: '/allVolunteers',
+          element: <AllVolunteerNeedPost/>,
+          loader: ()=> fetch(`${import.meta.env.VITE_API_URL}/allVolunteers`)
         },
         {
           path: '/addVolunteer',

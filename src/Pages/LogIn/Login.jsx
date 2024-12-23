@@ -27,7 +27,7 @@ const Login = () => {
           timer: 2000
         });
         navigate(path)
-        console.log(credential.user)
+        // console.log(credential.user)
       })
       .catch((error) => {
         toast.error("An error occurred. Please try again later.", {

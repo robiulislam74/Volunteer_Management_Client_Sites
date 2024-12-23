@@ -18,7 +18,7 @@ const Navbar = () => {
 
   const links = <div className='flex navItem items-center text-base font-medium text-gray-600 space-x-6'>
     <NavLink to={"/"}><li>Home</li></NavLink>
-    <NavLink to={"/allVolunteer"}><li>All volunteer Need posts</li></NavLink>
+    <NavLink to={"/allVolunteers"}><li>All volunteer Need posts</li></NavLink>
   </div>
 
   return (
