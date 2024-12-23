@@ -13,7 +13,7 @@ const AllVolunteerNeedPost = () => {
       <div className='mt-16'>
         <Heading
           title={'All Volunteer Opportunities'}
-          subTitle={"Discover a wide range of volunteer opportunities across various causes and organizations. Supporting education, this is the place to find meaningful ways to contribute and make an impact"}
+          subTitle={"Discover a wide range of volunteer opportunities across various causes and organizations. This is the place to find meaningful ways to contribute and make an impact"}
         />
       </div>
       <div className='max-w-screen-lg mb-24 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
