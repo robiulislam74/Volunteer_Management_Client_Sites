@@ -30,7 +30,7 @@ import VolunteerDetails from "../Pages/VolunteerDetails/VolunteerDetails";
         {
           path: '/allVolunteers',
           element: <AllVolunteerNeedPost/>,
-          loader: ()=> fetch(`${import.meta.env.VITE_API_URL}/allVolunteers`)
+          // loader: ()=> fetch(`${import.meta.env.VITE_API_URL}/allVolunteers`)
         },
         {
           path: '/addVolunteer',

@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 const AddVolunteer = () => {
   const { user } = UseContext()
   const [startDate, setStartDate] = useState(new Date());
+  const [volunteerNumber,setVolunteerNumber]=useState(null)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,6 +18,7 @@ const AddVolunteer = () => {
     formData.organizer_name = user?.displayName,
       formData.organizer_email = user?.email,
       formData.date = startDate
+      formData.volunteersNeeded=parseInt(volunteerNumber)
 
     const { data } = axios.post(`${import.meta.env.VITE_API_URL}/addVolunteers`, formData)
       .then(res => {
@@ -109,7 +111,8 @@ const AddVolunteer = () => {
           </label>
           <input
             type="number"
-            name='volunteersNeeded'
+            onChange={(e)=>setVolunteerNumber(e.target.value)}
+            // name='volunteersNeeded'
             placeholder="Enter number of volunteers"
             className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
             required

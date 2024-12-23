@@ -23,7 +23,7 @@ const customStyles = {
 };
 
 const VolunteerDetailsCard = ({ volunteer }) => {
-    const { thumbnail, title, description, category, location, date, volunteersNeeded, organizer_name, organizer_email } = volunteer || {}
+    const {_id, thumbnail, title, description, category, location, date, volunteersNeeded, organizer_name, organizer_email } = volunteer || {}
     const { user } = UseContext()
     const navigate = useNavigate()
     const [startDate, setStartDate] = useState(date);
@@ -48,8 +48,9 @@ const VolunteerDetailsCard = ({ volunteer }) => {
         const datas = new FormData(e.target)
         const formData = Object.fromEntries(datas.entries())
         formData.date = startDate
+        formData.status = "requested"
 
-        axios.post(`${import.meta.env.VITE_API_URL}/requestVolunteer`, formData)
+        axios.post(`${import.meta.env.VITE_API_URL}/requestVolunteer?id=${_id}`, formData)
             .then(res => {
                 if (res.data?.insertedId) {
                     Swal.fire({
