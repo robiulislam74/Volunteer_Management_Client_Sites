@@ -10,6 +10,7 @@ const provider = new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
     const [loading,setLoading] = useState(true)
     const [user,setUser]=useState(null)
+    const [myPosts, setMyPosts] = useState([])
 
 
     const createSingUp = (email,password)=>{
@@ -48,6 +49,8 @@ const AuthProvider = ({children}) => {
         signInUser,
         handleGoogleLogin,
         signOutFunc,
+        setMyPosts,
+        myPosts,
     }
 
   return (

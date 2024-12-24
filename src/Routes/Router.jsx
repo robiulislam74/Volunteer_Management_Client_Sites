@@ -9,6 +9,7 @@ import AllVolunteerNeedPost from "../Pages/AllVolunteerNeedPost/AllVolunteerNeed
 import AddVolunteer from "../Pages/AddVolunteerNeedPost/AddVolunteer";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import VolunteerDetails from "../Pages/VolunteerDetails/VolunteerDetails";
+import ManageMyPost from "../Pages/ManageMyPost/ManageMyPost";
 
   const router = createBrowserRouter([
     {
@@ -44,6 +45,12 @@ import VolunteerDetails from "../Pages/VolunteerDetails/VolunteerDetails";
             <VolunteerDetails/>
           </PrivateRoutes>,
           loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/volunteerDetails/${params.id}`)
+        },
+        {
+          path: '/manageMyPost',
+          element: <PrivateRoutes>
+            <ManageMyPost/>
+          </PrivateRoutes>
         },
       ]
     },

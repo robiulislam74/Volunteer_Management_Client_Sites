@@ -88,7 +88,7 @@ const Navbar = () => {
                         Add Volunteer need Post
                       </li>
                     </NavLink>
-                    <NavLink to={'managePost'}>
+                    <NavLink to={'/manageMyPost'}>
                       <li className='hover:text-blue-700 hover:font-medium'>
                         Manage My Posts
                       </li>

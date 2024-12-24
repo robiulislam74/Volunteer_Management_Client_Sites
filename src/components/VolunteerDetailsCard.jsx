@@ -47,6 +47,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
         e.preventDefault();
         const datas = new FormData(e.target)
         const formData = Object.fromEntries(datas.entries())
+        formData.volunteersNeeded = parseInt(formData.volunteersNeeded)
         formData.date = startDate
         formData.status = "requested"
 
