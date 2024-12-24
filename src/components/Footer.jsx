@@ -3,7 +3,7 @@ import logo from '../assets/images/volunteer-2.png'
 
 const Footer = () => {
   return (
-    <footer className="footer text-base-content p-10 bg-[#F5EFFF]">
+    <footer className="footer text-base-content p-10">
       <aside>
         <img src={logo} alt="" />
         <p>

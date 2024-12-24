@@ -7,11 +7,11 @@ import Footer from '../components/Footer'
 const MainLayOut = () => {
   return (
     <>
-      <header className='bg-[#F5EFFF]'><Navbar /></header>
+      <header className='bg-[#E5D9F2]/95 sticky top-0 z-50'><Navbar /></header>
         <main className='min-h-[calc(100vh-308px)]'>
         <Outlet/>
         </main>
-        <footer> <Footer/> </footer>
+        <footer className='bg-[#E5D9F2]'> <Footer/> </footer>
     </>
   )
 }

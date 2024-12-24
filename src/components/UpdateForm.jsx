@@ -38,7 +38,7 @@ const UpdateForm = ({ volunteer, closeModal,setRun,run }) => {
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-8">
-            <h2 className="text-2xl font-bold text-center mb-6">Update Volunteer Need Post</h2>
+            <h2 className="text-2xl font-bold text-center lg:mb-6">Update Volunteer Need Post</h2>
             <form
                 onSubmit={handleSubmit}
                 key={volunteer._id}

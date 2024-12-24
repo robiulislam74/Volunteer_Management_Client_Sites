@@ -16,13 +16,13 @@ const Navbar = () => {
       });
   }
 
-  const links = <div className='flex navItem items-center text-base font-medium text-gray-600 space-x-6'>
+  const links = <div className='md:flex navItem items-center text-base font-medium text-gray-600 sm:space-y-2 md:space-x-6'>
     <NavLink to={"/"}><li>Home</li></NavLink>
     <NavLink to={"/allVolunteers"}><li>All volunteer Need posts</li></NavLink>
   </div>
 
   return (
-    <div className="navbar max-w-screen-xl mx-auto py-5">
+    <div className="navbar max-w-screen-xl mx-auto md:py-5 py-4">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,8 +47,8 @@ const Navbar = () => {
         </div>
         <NavLink to={'/'}>
         <div className="flex items-center gap-x-3">
-          <img className='w-14' src={logo} />
-          <div>
+          <img className='md:w-14 w-10' src={logo} />
+          <div className='hidden md:block'>
             <h2 className='text-3xl font-bold font-cabin'>Volunteer</h2>
             <p className='text-sm font-semibold'>Charity & Fundraising</p>
           </div>
@@ -74,8 +74,8 @@ const Navbar = () => {
               ?
               <div className='flex items-center gap-3'>
                 <div className="dropdown dropdown-end">
-                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                    <div data-tooltip-id="my-tooltip-2" className="w-20 rounded-full border-2 border-green-500">
+                  <div tabIndex={0} role="button" className="btn w-10 md:w-[50px] btn-ghost btn-circle avatar">
+                    <div data-tooltip-id="my-tooltip-2" className="rounded-full border-2 border-green-500">
                       <img
                         className='inline-block'
                         src={user.photoURL}
@@ -99,7 +99,7 @@ const Navbar = () => {
                 </div>
                 <div>
                   <NavLink to={'/'}>
-                    <button onClick={handleLogOut} className="btn btn-error btn-outline">LogOut</button>
+                    <button onClick={handleLogOut} className="btn btn-sm md:btn-md btn-error btn-outline">LogOut</button>
                   </NavLink>
                 </div>
               </div>

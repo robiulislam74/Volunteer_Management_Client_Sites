@@ -16,11 +16,17 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        width: "80%",  // Modal width
-        maxWidth: "600px",  // Maximum width
-        maxHeight: "80vh",  // Maximum height
-        overflowY: "auto",  // Enable vertical scrolling
-        padding: "20px",  // Padding inside the modal
+        width: "90%",
+        maxWidth: "600px",
+        maxHeight: "80vh",
+        overflowY: "auto",
+        padding: "10px",
+        borderRadius: "6px",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    },
+    overlay: {
+        backgroundColor: "rgba(0, 0, 0, 0.3)",
+        zIndex: 1000,
     },
 };
 

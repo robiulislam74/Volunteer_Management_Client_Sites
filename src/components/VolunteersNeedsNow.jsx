@@ -3,7 +3,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 const VolunteersNeedsNow = ({ volunteer }) => {
-  const { _id, thumbnail, title, category, date,volunteersNeeded } = volunteer || {}
+  const { _id, thumbnail, title, category, date, volunteersNeeded } = volunteer || {}
 
   const formatDate = (isoString) => {
     return moment(isoString).format("MM/DD/YYYY"); // Example: "January 15, 2025"
@@ -12,36 +12,36 @@ const VolunteersNeedsNow = ({ volunteer }) => {
 
 
   return (
-    <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-auto">
+    <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-auto">
       {/* Thumbnail */}
       <img
         src={thumbnail}
         alt={title}
-        className="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover"
+        className="w-full h-40 sm:h-48 md:h-56 lg:h-64 xl:h-72 object-cover"
       />
 
       {/* Card Content */}
       <div className="p-4">
         {/* Post Title */}
-        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
+        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-800">
           {title}
         </h3>
 
         {/* Category */}
-        <p className="text-sm sm:text-base text-gray-500 mt-2">
+        <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-2">
           <span className="font-semibold">Category:</span> {category}
         </p>
 
         {/* Deadline */}
-        <p className="text-sm sm:text-base text-gray-500 mt-1">
+        <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-1">
           <span className="font-semibold">Deadline:</span> {formattedDate}
         </p>
 
         {/* Volunteers Needed */}
-        <div className="mt-6">
-          <p className="text-sm sm:text-base text-gray-500">
-            <span className="font-semibold">Volunteers Needed:</span> 
-            <span className='font-bold ml-2 text-rose-400'>{volunteersNeeded}</span>
+        <div className="mt-4">
+          <p className="text-xs sm:text-sm md:text-base text-gray-500">
+            <span className="font-semibold">Volunteers Needed:</span>
+            <span className="font-bold ml-2 text-rose-400">{volunteersNeeded}</span>
           </p>
         </div>
 
@@ -55,6 +55,7 @@ const VolunteersNeedsNow = ({ volunteer }) => {
         </NavLink>
       </div>
     </div>
+
   )
 }
 

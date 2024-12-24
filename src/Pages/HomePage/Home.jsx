@@ -25,26 +25,35 @@ const Home = () => {
       <Helmet>
         <title>Volunteer | Home</title>
       </Helmet>
+
+      {/* Banner Section */}
       <BannerSlider />
-      <div className='mt-24'>
-      <Heading
-        title={'Volunteer Needs Now'}
-        subTitle={'Act swiftly to make a difference! Explore urgent opportunities to volunteer and support causes that matter most. Upcoming deadlines are fast approaching—find your role today.'}
-      />
+
+      {/* Heading Section */}
+      <div className="mt-16 sm:mt-20 px-4">
+        <Heading
+          title="Volunteer Needs Now"
+          subTitle="Act swiftly to make a difference! Explore urgent opportunities to volunteer and support causes that matter most. Upcoming deadlines are fast approaching—find your role today."
+        />
       </div>
-      <div className='max-w-screen-lg mb-24 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-        {
-          volunteers.map(volunteer=> 
-          <VolunteersNeedsNow 
-          key={volunteer._id} 
-          volunteer={volunteer}
-          />)
-        }
-        <NavLink to={'/allVolunteers'}>
-        <button className='text-left font-semibold text-xl text-lime-600 inline-block hover:text-blue-700 underline pb-3'>See All ...</button>
-        </NavLink>
+
+      {/* Volunteer Grid */}
+      <div className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 sm:mt-12 lg:mt-12 px-4">
+        {volunteers.map((volunteer) => (
+          <VolunteersNeedsNow key={volunteer._id} volunteer={volunteer} />
+        ))}
+
+        {/* See All Button */}
+        <div className="col-span-1 sm:col-span-2 lg:col-span-3 text-center mb-12 md:mb-24">
+          <NavLink to="/allVolunteers">
+            <button className="text-left font-semibold text-lg sm:text-xl text-lime-600 inline-block hover:text-blue-700 underline pb-3 transition-colors duration-300">
+              See All ...
+            </button>
+          </NavLink>
+        </div>
       </div>
     </div>
+
   )
 }
 
