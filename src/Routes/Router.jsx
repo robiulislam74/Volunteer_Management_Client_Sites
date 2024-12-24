@@ -10,11 +10,13 @@ import AddVolunteer from "../Pages/AddVolunteerNeedPost/AddVolunteer";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import VolunteerDetails from "../Pages/VolunteerDetails/VolunteerDetails";
 import ManageMyPost from "../Pages/ManageMyPost/ManageMyPost";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayOut/>,
+      errorElement: <ErrorPage/>,
       children:[
         {
             path: "/",

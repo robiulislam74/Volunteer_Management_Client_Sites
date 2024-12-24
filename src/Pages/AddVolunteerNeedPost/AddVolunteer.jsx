@@ -4,10 +4,12 @@ import UseContext from '../../Context/CustomHook/UseContext';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddVolunteer = () => {
   const { user } = UseContext()
+  const navigate = useNavigate()
   const [startDate, setStartDate] = useState(new Date());
   const [volunteerNumber,setVolunteerNumber]=useState(null)
 
@@ -26,11 +28,12 @@ const AddVolunteer = () => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Login Successful!",
+            title: "Volunteer post successfully Done!",
             showConfirmButton: false,
             timer: 2000
           });
         }
+        navigate('/allVolunteers')
       })
       e.target.reset();
   };

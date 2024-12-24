@@ -57,12 +57,12 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Request Data Stored Successfully!",
+                        title: "Request Send Successfully!",
                         showConfirmButton: false,
                         timer: 2000
                     });
                     closeModal()
-                    navigate('/allVolunteers')
+                    navigate('/manageMyPost')
                 }
             })
         e.target.reset();

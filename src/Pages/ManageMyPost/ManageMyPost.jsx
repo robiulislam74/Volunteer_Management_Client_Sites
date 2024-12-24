@@ -30,6 +30,7 @@ const ManageMyPost = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [updateData, setUpdateData] = useState([])
     const [run, setRun] = useState(false)
+    const [myRequest, setMyRequest] = useState([])
 
 
     function openModal() {
@@ -53,6 +54,15 @@ const ManageMyPost = () => {
         manageMyPostFunc()
     }, [run])
 
+    useEffect(() => {
+        const manageMyRequestFunc = async () => {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/manageMyRequest?email=${user?.email}&name=${user?.displayName}`)
+            setMyRequest(data)
+        }
+        manageMyRequestFunc()
+    }, [])
+
+
     const handleUpdate = async (_id) => {
         openModal()
         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/manageMyPost/${_id}`)
@@ -71,8 +81,7 @@ const ManageMyPost = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 await axios.delete(`${import.meta.env.VITE_API_URL}/manageMyPost/${_id}`)
-                    .then(res => 
-                    {
+                    .then(res => {
                         if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
@@ -80,13 +89,41 @@ const ManageMyPost = () => {
                                 icon: "success"
                             });
                         }
-                        const withOutDeleteData = myPosts.filter(volunteer=>volunteer._id !== _id)
+                        const withOutDeleteData = myPosts.filter(volunteer => volunteer._id !== _id)
                         setMyPosts(withOutDeleteData)
                     }
                     )
             }
         });
 
+    }
+
+    const handleCancelBtn = (_id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, remove it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await axios.delete(`${import.meta.env.VITE_API_URL}/manageMyRequest?email=${user?.email}&name=${user?.displayName}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Removed!",
+                                text: "Your Volunteer Request has been removed.",
+                                icon: "success"
+                            });
+                        }
+                        const withOutDeleteData = myRequest.filter(volunteer => volunteer._id !== _id)
+                        setMyRequest(withOutDeleteData)
+                    }
+                    )
+            }
+        });
     }
 
 
@@ -104,31 +141,43 @@ const ManageMyPost = () => {
                             <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {myPosts.map((post, idx) => (
-                            <tr key={post._id} className="border-b hover:bg-gray-50">
-                                <td className="px-6 py-3 text-sm text-gray-800">{idx + 1}</td>
-                                <td className="px-6 py-3 text-sm text-gray-800">{post.title}</td>
-                                <td className="px-6 py-3 text-sm text-gray-800">{post.description}</td>
-                                <td className="px-6 py-3 text-sm font-bold text-rose-400">{post.volunteersNeeded}</td>
-                                <td className="px-6 py-3 flex space-x-2">
-                                    <button
-                                        className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs"
-                                        onClick={() => handleUpdate(post._id)}
-                                    >
-                                        Update
-                                    </button>
-                                    <button
-                                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs"
-                                        onClick={() => handleDelete(post._id)}
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
+                    {
+                        myPosts.length > 0
+                        &&
+                        <tbody>
+                            {myPosts.map((post, idx) => (
+                                <tr key={post._id} className="border-b hover:bg-gray-50">
+                                    <td className="px-6 py-3 text-sm text-gray-800">{idx + 1}</td>
+                                    <td className="px-6 py-3 text-sm text-gray-800">{post.title}</td>
+                                    <td className="px-6 py-3 text-sm text-gray-800">{post.description}</td>
+                                    <td className="px-6 py-3 text-sm font-bold text-rose-400">{post.volunteersNeeded}</td>
+                                    <td className="px-6 py-3 flex space-x-2">
+                                        <button
+                                            className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs"
+                                            onClick={() => handleUpdate(post._id)}
+                                        >
+                                            Update
+                                        </button>
+                                        <button
+                                            className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs"
+                                            onClick={() => handleDelete(post._id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    }
                 </table>
+                {
+                    myPosts.length === 0 &&
+                    <div className=' bg-green-100 '>
+                        <h2 className='h-32 text-3xl font-bold text-gray-300 w-full grid col-span-4 justify-center items-center'>
+                            Not Found Volunteer ...
+                        </h2>
+                    </div>
+                }
             </div>
             {/* Modal */}
             <div>
@@ -150,6 +199,57 @@ const ManageMyPost = () => {
                         )
                     }
                 </Modal>
+            </div>
+            {/* My Request Volunteers */}
+            <h1 className="text-2xl font-bold text-center mt-24 mb-4">Manage and Review Your Volunteer Requests</h1>
+            <div className="overflow-x-auto">
+                <table className="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr className="bg-gray-100 border-b">
+                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Serial</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Title</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Description</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Category</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Volunteers Needed</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Actions</th>
+                        </tr>
+                    </thead>
+
+                    {
+                        myRequest.length > 0
+                        &&
+                        <tbody>
+                            {myRequest.map((post, idx) => (
+                                <tr key={post._id} className="border-b hover:bg-gray-50">
+                                    <td className="px-6 py-3 text-sm text-gray-800">{idx + 1}</td>
+                                    <td className="px-6 py-3 text-sm text-gray-800">{post.title}</td>
+                                    <td className="px-6 py-3 text-sm text-gray-800">{post.description}</td>
+                                    <td className="px-6 py-3 text-sm text-gray-800">{post.category}</td>
+                                    <td className="px-6 py-3 text-sm font-bold text-rose-400">{post.volunteersNeeded}</td>
+                                    <td className="px-6 py-3 flex space-x-2">
+                                        <button
+                                            className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs"
+                                            onClick={() => handleCancelBtn(post._id)}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+
+                    }
+
+
+                </table>
+                {
+                    myRequest.length === 0 &&
+                    <div className=' bg-green-100 '>
+                        <h2 className='h-32 text-3xl font-bold text-gray-300 w-full grid col-span-4 justify-center items-center'>
+                            Not Found Request !
+                        </h2>
+                    </div>
+                }
             </div>
         </div>
     )
