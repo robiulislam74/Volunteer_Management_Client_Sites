@@ -45,6 +45,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
+        <NavLink to={'/'}>
         <div className="flex items-center gap-x-3">
           <img className='w-14' src={logo} />
           <div>
@@ -52,6 +53,7 @@ const Navbar = () => {
             <p className='text-sm font-semibold'>Charity & Fundraising</p>
           </div>
         </div>
+        </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

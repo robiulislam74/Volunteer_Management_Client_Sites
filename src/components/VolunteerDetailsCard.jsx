@@ -4,7 +4,9 @@ import Modal from 'react-modal';
 import UseContext from '../Context/CustomHook/UseContext';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { div } from 'motion/react-client';
+import { Helmet } from 'react-helmet-async';
 
 const customStyles = {
     content: {
@@ -29,6 +31,9 @@ const VolunteerDetailsCard = ({ volunteer }) => {
     const [startDate, setStartDate] = useState(date);
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
+    const locations = useLocation()
+    const path = locations.pathname.split("/")[1]
+
 
     function openModal() {
         setIsOpen(true);
@@ -70,7 +75,11 @@ const VolunteerDetailsCard = ({ volunteer }) => {
 
 
     return (
-        <div className="max-w-4xl bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-auto p-6">
+      <div>
+        <Helmet>
+            <title>Volunteer | {path}</title>
+        </Helmet>
+          <div className="max-w-4xl bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-auto p-6">
             {/* Thumbnail */}
             <img
                 src={volunteer.thumbnail}
@@ -327,6 +336,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                 </Modal>
             </div>
         </div>
+      </div>
     )
 }
 

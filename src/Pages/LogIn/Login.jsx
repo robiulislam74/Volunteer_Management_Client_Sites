@@ -5,12 +5,15 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import GoogleLogin from '../../SharedFiles/GoogleLogin'
 import { toast } from 'react-toastify'
 import Swal from 'sweetalert2'
+import { Helmet } from 'react-helmet-async'
 
 const Login = () => {
   const { signInUser } = UseContext()
   const navigate = useNavigate()
   const location = useLocation()
- const path = location.state || "/"
+  const path = location.state || "/"
+  const locations = useLocation()
+  const paths = locations.pathname.split("/")[1]
 
   const handleSignIn = (e) => {
     e.preventDefault()
@@ -38,6 +41,9 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <Helmet>
+        <title>Volunteer | {paths}</title>
+      </Helmet>
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-semibold text-gray-700 text-center mb-4">
           Login to Your Account

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useLoaderData } from 'react-router-dom'
+import {useLocation } from 'react-router-dom'
 import VolunteersNeedsNow from '../../components/VolunteersNeedsNow'
 import Heading from '../../components/Heading'
 import axios from 'axios'
+import { Helmet } from 'react-helmet-async'
 
 const AllVolunteerNeedPost = () => {
   // const volunteers = useLoaderData()
   const [allVolunteers, setAllVolunteers] = useState([])
   const [searchTitle,setSearchTitle] =useState('')
+  const locations = useLocation()
+  const path = locations.pathname.split("/")[1]
 
 
   useEffect(()=>{
@@ -26,6 +29,9 @@ const AllVolunteerNeedPost = () => {
 
   return (
     <div>
+      <Helmet>
+                  <title>Volunteer | {path}</title>
+              </Helmet>
       <div className='mt-16'>
         <Heading
           title={'All Volunteer Opportunities'}

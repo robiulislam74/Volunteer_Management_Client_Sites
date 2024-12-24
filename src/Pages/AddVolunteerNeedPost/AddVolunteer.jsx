@@ -4,14 +4,17 @@ import UseContext from '../../Context/CustomHook/UseContext';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 
 const AddVolunteer = () => {
   const { user } = UseContext()
   const navigate = useNavigate()
   const [startDate, setStartDate] = useState(new Date());
-  const [volunteerNumber,setVolunteerNumber]=useState(null)
+  const [volunteerNumber, setVolunteerNumber] = useState(null)
+  const locations = useLocation()
+  const path = locations.pathname.split("/")[1]
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +23,7 @@ const AddVolunteer = () => {
     formData.organizer_name = user?.displayName,
       formData.organizer_email = user?.email,
       formData.date = startDate
-      formData.volunteersNeeded=parseInt(volunteerNumber)
+    formData.volunteersNeeded = parseInt(volunteerNumber)
 
     const { data } = axios.post(`${import.meta.env.VITE_API_URL}/addVolunteers`, formData)
       .then(res => {
@@ -35,11 +38,14 @@ const AddVolunteer = () => {
         }
         navigate('/allVolunteers')
       })
-      e.target.reset();
+    e.target.reset();
   };
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
+      <Helmet>
+        <title>Volunteer | {path}</title>
+      </Helmet>
       <h2 className="text-2xl font-bold text-center mb-6">Add Volunteer Need Post</h2>
       <form
         onSubmit={handleSubmit}
@@ -114,7 +120,7 @@ const AddVolunteer = () => {
           </label>
           <input
             type="number"
-            onChange={(e)=>setVolunteerNumber(e.target.value)}
+            onChange={(e) => setVolunteerNumber(e.target.value)}
             // name='volunteersNeeded'
             placeholder="Enter number of volunteers"
             className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"

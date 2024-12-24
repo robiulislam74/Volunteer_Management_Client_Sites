@@ -8,11 +8,14 @@ import { updateProfile } from 'firebase/auth'
 import auth from '../../FireBase/firebase.config'
 import { toast } from 'react-toastify'
 import Swal from 'sweetalert2'
+import { Helmet } from 'react-helmet-async'
 
 const Registration = () => {
     const { createSingUp } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
+    const locations = useLocation()
+    const paths = locations.pathname.split("/")[1]
     const path = location.state || "/"
     const uppercaseRegex = /^(?=.*[A-Z]).+$/;
     const lowercaseRegex = /^(?=.*[a-z]).+$/;
@@ -73,6 +76,9 @@ const Registration = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center py-16 bg-gray-50">
+            <Helmet>
+                <title>Volunteer | {paths}</title>
+            </Helmet>
             <div className="bg-white flex-1 shadow-md rounded-lg p-8 w-full max-w-md">
                 <h2 className="text-2xl font-semibold text-gray-700 text-center mb-4">
                     Create an Account

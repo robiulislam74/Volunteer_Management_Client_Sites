@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import UseContext from '../../Context/CustomHook/UseContext'
 import axios from 'axios'
 import Modal from 'react-modal';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import UpdateForm from '../../components/UpdateForm';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 
 const customStyles = {
@@ -31,6 +31,8 @@ const ManageMyPost = () => {
     const [updateData, setUpdateData] = useState([])
     const [run, setRun] = useState(false)
     const [myRequest, setMyRequest] = useState([])
+    const locations = useLocation()
+    const path = locations.pathname.split("/")[1]
 
 
     function openModal() {
@@ -129,6 +131,9 @@ const ManageMyPost = () => {
 
     return (
         <div className="p-4 max-w-screen-lg mx-auto mt-12 pb-24">
+            <Helmet>
+                <title>Volunteer | {path}</title>
+            </Helmet>
             <h1 className="text-2xl font-bold text-center mb-4">My Volunteer Need Posts</h1>
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white border border-gray-200">

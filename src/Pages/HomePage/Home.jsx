@@ -4,6 +4,7 @@ import axios from 'axios'
 import Heading from '../../components/Heading'
 import VolunteersNeedsNow from '../../components/VolunteersNeedsNow'
 import { NavLink } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 
 const Home = () => {
@@ -21,6 +22,9 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Volunteer | Home</title>
+      </Helmet>
       <BannerSlider />
       <div className='mt-24'>
       <Heading
