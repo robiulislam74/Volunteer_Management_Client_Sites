@@ -5,11 +5,11 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const UpdateForm = ({ volunteer, closeModal,setRun,run }) => {
+const UpdateForm = ({ volunteer, closeModal, setRun, run }) => {
     const { user } = UseContext()
     const navigate = useNavigate()
     const [startDate, setStartDate] = useState(volunteer?.date);
-    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,7 +20,7 @@ const UpdateForm = ({ volunteer, closeModal,setRun,run }) => {
 
         axios.patch(`${import.meta.env.VITE_API_URL}/manageMyPost/update/${volunteer?._id}`, formData)
             .then(res => {
-                if (res.data?.modifiedCount>0) {
+                if (res.data?.modifiedCount > 0) {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",

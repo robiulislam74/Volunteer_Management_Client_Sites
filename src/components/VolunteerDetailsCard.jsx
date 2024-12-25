@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { div } from 'motion/react-client';
 import { Helmet } from 'react-helmet-async';
+import { toast } from 'react-toastify';
 
 const customStyles = {
     content: {
@@ -43,6 +44,11 @@ const VolunteerDetailsCard = ({ volunteer }) => {
 
 
     function openModal() {
+        if(volunteersNeeded === 0){
+            return toast.error(`No volunteers are needed at the moment. VolunteerNeed: ${volunteersNeeded}`, {
+                      position: 'top-center',
+                    });
+        }
         setIsOpen(true);
     }
 
@@ -265,7 +271,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                     </div>
                                 </div>
 
-                                {/* Organizer and Volunteer Info */}
+                                {/* Organizer  Info */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700">
@@ -287,6 +293,33 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                             type="email"
                                             name="organizer_email"
                                             value={organizer_email}
+                                            readOnly
+                                            className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1"
+                                        />
+                                    </div>
+                                </div>
+                                {/*Volunteer Info */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700">
+                                        Volunteer Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="volunteer_name"
+                                            value={user?.displayName}
+                                            readOnly
+                                            className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700">
+                                        Volunteer Email
+                                        </label>
+                                        <input
+                                            type="email"
+                                            name="volunteer_email"
+                                            value={user?.email}
                                             readOnly
                                             className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1"
                                         />
