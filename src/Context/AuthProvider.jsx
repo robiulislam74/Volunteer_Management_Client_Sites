@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 
 export const AuthContext = createContext(null)
 import { GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
 const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({children}) => {
@@ -47,7 +48,27 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
       const currentUser = onAuthStateChanged(auth, (user) => {
         setUser(user)
-        setLoading(false)
+
+        // JWT Token Set
+        if(user?.email){
+          const email = user.email
+          axios.post(`http://localhost:5000/jwt`,email,{
+            withCredentials: true
+          })
+          .then(res=>{
+            console.log("SignIn Add Token",res.data)
+            setLoading(false)
+          })
+        }else{
+          axios.post('http://localhost:5000/logOut',{},{
+            withCredentials:true
+          })
+          .then(res=>{
+            console.log("logOut Remove Token",res.data)
+            setLoading(false)
+          })
+        }
+
       });
      return ()=> currentUser()
     },[])

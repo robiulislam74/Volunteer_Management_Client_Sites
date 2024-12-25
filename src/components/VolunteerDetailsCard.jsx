@@ -179,7 +179,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                         type="url"
                                         name="thumbnail"
                                         defaultValue={thumbnail}
-                                        disabled
+                                        readOnly
                                         className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     />
                                 </div>
@@ -193,7 +193,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                         type="text"
                                         name="title"
                                         defaultValue={title}
-                                        disabled
+                                        readOnly
                                         className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     />
                                 </div>
@@ -206,7 +206,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                     <textarea
                                         name="description"
                                         defaultValue={description}
-                                        disabled
+                                        readOnly
                                         rows="4"
                                         className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     ></textarea>
@@ -220,7 +220,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                     <select
                                         name="category"
                                         defaultValue={category}
-                                        disabled
+                                        readOnly
                                         className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     >
                                         <option>{category}</option>
@@ -236,7 +236,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                         type="text"
                                         name="location"
                                         defaultValue={location}
-                                        disabled
+                                        readOnly
                                         className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     />
                                 </div>
@@ -250,7 +250,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                         type="number"
                                         name="volunteersNeeded"
                                         defaultValue={volunteersNeeded}
-                                        disabled
+                                        readOnly
                                         className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     />
                                 </div>
@@ -263,7 +263,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                     <div>
                                         <DatePicker
                                             showIcon
-                                            disabled
+                                            readOnly
                                             selected={startDate}
                                             onChange={(date) => setStartDate(date)}
                                             className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500`}
@@ -281,7 +281,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                             type="text"
                                             name="organizer_name"
                                             value={organizer_name}
-                                            disabled
+                                            readOnly
                                             className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                         />
                                     </div>
@@ -293,7 +293,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                             type="email"
                                             name="organizer_email"
                                             value={organizer_email}
-                                            disabled
+                                            readOnly
                                             className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                         />
                                     </div>
@@ -308,7 +308,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                             type="text"
                                             name="volunteer_name"
                                             value={user?.displayName}
-                                            disabled
+                                            readOnly
                                             className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                         />
                                     </div>
@@ -320,7 +320,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                             type="email"
                                             name="volunteer_email"
                                             value={user?.email}
-                                            disabled
+                                            readOnly
                                             className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                         />
                                     </div>
