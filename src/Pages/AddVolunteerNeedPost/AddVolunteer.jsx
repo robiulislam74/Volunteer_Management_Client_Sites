@@ -9,7 +9,7 @@ import { Helmet } from 'react-helmet-async';
 
 
 const AddVolunteer = () => {
-  const { user } = UseContext()
+  const { user,theme } = UseContext()
   const navigate = useNavigate()
   const [startDate, setStartDate] = useState(new Date());
   const [volunteerNumber, setVolunteerNumber] = useState(null)
@@ -25,7 +25,7 @@ const AddVolunteer = () => {
       formData.date = startDate
     formData.volunteersNeeded = parseInt(volunteerNumber)
 
-    const { data } = axios.post(`${import.meta.env.VITE_API_URL}/addVolunteers`, formData)
+     axios.post(`${import.meta.env.VITE_API_URL}/addVolunteers`, formData)
       .then(res => {
         if (res.data?.insertedId) {
           Swal.fire({
@@ -49,15 +49,15 @@ const AddVolunteer = () => {
       <h2 className="text-2xl font-bold text-center mb-6">Add Volunteer Need Post</h2>
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-lg p-6 space-y-4"
-      >
+        className={`${theme==="light"?"bg-white":"bg-gray-900"} shadow-lg rounded-lg p-6 space-y-4`}      >
         {/* Thumbnail */}
         <div>
           <label className="block text-sm font-medium text-gray-700">Thumbnail</label>
           <input
             type="url"
             name="thumbnail"
-            className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+            placeholder='Enter your Thumbnail Url'
+            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
           />
         </div>
 
@@ -68,7 +68,7 @@ const AddVolunteer = () => {
             type="text"
             name="title"
             placeholder="Enter post title"
-            className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
             required
           />
         </div>
@@ -79,7 +79,7 @@ const AddVolunteer = () => {
           <textarea
             name="description"
             placeholder="Enter post description"
-            className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
             rows="4"
             required
           ></textarea>
@@ -90,7 +90,7 @@ const AddVolunteer = () => {
           <label className="block text-sm font-medium text-gray-700">Category</label>
           <select
             name="category"
-            className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
             required
           >
             <option value="" disabled>Select a category</option>
@@ -108,7 +108,7 @@ const AddVolunteer = () => {
             type="text"
             name="location"
             placeholder="Enter location"
-            className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
             required
           />
         </div>
@@ -123,7 +123,7 @@ const AddVolunteer = () => {
             onChange={(e) => setVolunteerNumber(e.target.value)}
             // name='volunteersNeeded'
             placeholder="Enter number of volunteers"
-            className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
             required
           />
         </div>
@@ -140,6 +140,7 @@ const AddVolunteer = () => {
               showIcon
               selected={startDate}
               onChange={(date) => setStartDate(date)}
+              className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
             />
           </div>
         </div>
@@ -154,7 +155,7 @@ const AddVolunteer = () => {
               type="text"
               value={user?.displayName}
               readOnly
-              className="block w-full border border-gray-300 rounded-lg p-2 mt-1 bg-gray-100"
+              className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
             />
           </div>
           <div>
@@ -165,7 +166,7 @@ const AddVolunteer = () => {
               type="email"
               value={user?.email}
               readOnly
-              className="block w-full border border-gray-300 rounded-lg p-2 mt-1 bg-gray-100"
+              className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
             />
           </div>
         </div>

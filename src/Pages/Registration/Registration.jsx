@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 import { Helmet } from 'react-helmet-async'
 
 const Registration = () => {
-    const { createSingUp } = useContext(AuthContext)
+    const { createSingUp,theme } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     const locations = useLocation()
@@ -75,12 +75,12 @@ const Registration = () => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center py-16 bg-gray-50">
+        <div className={`min-h-screen flex items-center justify-center py-16 ${theme==="light"?"bg-gray-50":"bg-[#000000]"}`}>
             <Helmet>
                 <title>Volunteer | {paths}</title>
             </Helmet>
-            <div className="bg-white flex-1 shadow-md rounded-lg p-8 w-full max-w-md">
-                <h2 className="text-2xl font-semibold text-gray-700 text-center mb-4">
+            <div className={`${theme==="light"?"bg-white":"bg-gray-900 border border-gray-800"} flex-1 shadow-md rounded-lg p-8 w-full max-w-md`}>
+                <h2 className={`text-2xl font-semibold ${theme==="light"?"text-black":"text-white"} text-center mb-4`}>
                     Create an Account
                 </h2>
                 <form onSubmit={handleRegistration}>

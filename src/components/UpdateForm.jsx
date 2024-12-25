@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const UpdateForm = ({ volunteer, closeModal, setRun, run }) => {
-    const { user } = UseContext()
+    const { user,theme } = UseContext()
     const navigate = useNavigate()
     const [startDate, setStartDate] = useState(volunteer?.date);
 
@@ -38,45 +38,44 @@ const UpdateForm = ({ volunteer, closeModal, setRun, run }) => {
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-8">
-            <h2 className="text-2xl font-bold text-center lg:mb-6">Update Volunteer Need Post</h2>
+            <h2 className={`text-2xl font-bold text-center lg:mb-6 ${theme==="light"?"text-black":"text-black"}`}>Update Volunteer Need Post</h2>
             <form
                 onSubmit={handleSubmit}
-                key={volunteer._id}
-                className="bg-white shadow-lg rounded-lg p-6 space-y-4"
+                className={`${theme==="light"?"bg-white":"bg-gray-900"} shadow-lg rounded-lg p-6 space-y-4`}
             >
                 {/* Thumbnail */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Thumbnail</label>
+                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>Thumbnail</label>
                     <input
                         type="url"
                         name="thumbnail"
                         defaultValue={volunteer?.thumbnail}
                         placeholder='Enter thumbnail Url'
-                        className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                     />
                 </div>
 
                 {/* Post Title */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Post Title</label>
+                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>Post Title</label>
                     <input
                         type="text"
                         name="title"
                         defaultValue={volunteer?.title}
                         placeholder="Enter post title"
-                        className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                         required
                     />
                 </div>
 
                 {/* Description */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Description</label>
+                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>Description</label>
                     <textarea
                         name="description"
                         defaultValue={volunteer?.description}
                         placeholder="Enter post description"
-                        className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                         rows="4"
                         required
                     ></textarea>
@@ -84,11 +83,11 @@ const UpdateForm = ({ volunteer, closeModal, setRun, run }) => {
 
                 {/* Category */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Category</label>
+                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>Category</label>
                     <select
                         name="category"
                         defaultValue={volunteer?.category}
-                        className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                         required
                     >
                         <option value="" disabled>Select a category</option>
@@ -101,20 +100,20 @@ const UpdateForm = ({ volunteer, closeModal, setRun, run }) => {
 
                 {/* Location */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Location</label>
+                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>Location</label>
                     <input
                         type="text"
                         name="location"
                         defaultValue={volunteer?.location}
                         placeholder="Enter location"
-                        className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                         required
                     />
                 </div>
 
                 {/* No. of Volunteers Needed */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                         No. of Volunteers Needed
                     </label>
                     <input
@@ -123,18 +122,14 @@ const UpdateForm = ({ volunteer, closeModal, setRun, run }) => {
                         defaultValue={volunteer?.volunteersNeeded}
                         // onChange={(e) => setVolunteerNumber(e.target.value)}
                         placeholder="Enter number of volunteers"
-                        className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                         required
                     />
                 </div>
 
                 {/* Deadline */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Deadline</label>
-                    {/* <DatePicker
-                                className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
-                                required
-                              /> */}
+                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>Deadline</label>
                     <div>
                         <DatePicker
                             showIcon
@@ -142,6 +137,7 @@ const UpdateForm = ({ volunteer, closeModal, setRun, run }) => {
                             // defaultValue={formatDate(volunteer?.date)}
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
+                            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500`}
                         />
                     </div>
                 </div>
@@ -149,27 +145,27 @@ const UpdateForm = ({ volunteer, closeModal, setRun, run }) => {
                 {/* Organizer Info */}
                 <div className="grid grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">
+                        <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                             Organizer Name
                         </label>
                         <input
                             type="text"
                             name='organizer_name'
                             value={user?.displayName}
-                            readOnly
-                            className="block w-full border border-gray-300 rounded-lg p-2 mt-1 bg-gray-100"
+                            disabled
+                            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">
+                        <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                             Organizer Email
                         </label>
                         <input
                             type="email"
                             name='organizer_email'
                             value={user?.email}
-                            readOnly
-                            className="block w-full border border-gray-300 rounded-lg p-2 mt-1 bg-gray-100"
+                            disabled
+                            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                         />
                     </div>
                 </div>

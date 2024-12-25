@@ -1,8 +1,10 @@
 import moment from 'moment';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import UseContext from '../Context/CustomHook/UseContext';
 
 const VolunteersNeedsNow = ({ volunteer }) => {
+  const{theme} = UseContext()
   const { _id, thumbnail, title, category, date, volunteersNeeded } = volunteer || {}
 
   const formatDate = (isoString) => {
@@ -12,7 +14,7 @@ const VolunteersNeedsNow = ({ volunteer }) => {
 
 
   return (
-    <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-auto">
+    <div className={`max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl ${theme==='light'?"bg-white":"bg-gray-800"} rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-auto`}>
       {/* Thumbnail */}
       <img
         src={thumbnail}
@@ -23,7 +25,7 @@ const VolunteersNeedsNow = ({ volunteer }) => {
       {/* Card Content */}
       <div className="p-4">
         {/* Post Title */}
-        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-800">
+        <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold ${theme==='light'?"text-black":"text-white"}`}>
           {title}
         </h3>
 

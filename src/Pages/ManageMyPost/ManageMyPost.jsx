@@ -31,7 +31,7 @@ const customStyles = {
 };
 
 const ManageMyPost = () => {
-    const { user, myPosts, setMyPosts } = UseContext()
+    const { user, myPosts, setMyPosts,theme } = UseContext()
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [updateData, setUpdateData] = useState([])
@@ -142,14 +142,14 @@ const ManageMyPost = () => {
             </Helmet>
             <h1 className="text-2xl font-bold text-center mb-4">My Volunteer Need Posts</h1>
             <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200">
+                <table className={`min-w-full ${theme==="light"?"bg-white":"bg-gray-900"} border border-gray-200`}>
                     <thead>
-                        <tr className="bg-gray-100 border-b">
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Serial</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Title</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Description</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Volunteers Needed</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Actions</th>
+                        <tr className={`${theme==="light"?"bg-gray-200":"bg-gray-800"} border-b`}>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Serial</th>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Title</th>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Description</th>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Volunteers Needed</th>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Actions</th>
                         </tr>
                     </thead>
                     {
@@ -157,12 +157,12 @@ const ManageMyPost = () => {
                         &&
                         <tbody>
                             {myPosts.map((post, idx) => (
-                                <tr key={post._id} className="border-b hover:bg-gray-50">
-                                    <td className="px-6 py-3 text-sm text-gray-800">{idx + 1}</td>
-                                    <td className="px-6 py-3 text-sm text-gray-800">{post.title}</td>
-                                    <td className="px-6 py-3 text-sm text-gray-800">{post.description}</td>
-                                    <td className="px-6 py-3 text-sm font-bold text-rose-400">{post.volunteersNeeded}</td>
-                                    <td className="px-6 py-3 flex space-x-2">
+                                <tr key={post._id} className={`border-b ${theme==="light"?"hover:bg-gray-100":"hover:bg-gray-800"} `}>
+                                    <td className={`px-6 py-3 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>{idx + 1}</td>
+                                    <td className={`px-6 py-3 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>{post.title}</td>
+                                    <td className={`px-6 py-3 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>{post.description}</td>
+                                    <td className={`px-6 py-3 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>{post.volunteersNeeded}</td>
+                                    <td className={`px-6 py-3 flex space-x-2 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>
                                         <button
                                             className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs"
                                             onClick={() => handleUpdate(post._id)}
@@ -183,8 +183,8 @@ const ManageMyPost = () => {
                 </table>
                 {
                     myPosts.length === 0 &&
-                    <div className=' bg-green-100 '>
-                        <h2 className='h-32 text-3xl font-bold text-gray-300 w-full grid col-span-4 justify-center items-center'>
+                    <div className={`${theme==="light"?"bg-green-100":"bg-gray-900"}`}>
+                        <h2 className={`h-32 text-3xl font-bold ${theme==="light"?"text-gray-300":"text-gray-700"} w-full grid col-span-4 justify-center items-center`}>
                             Not Found Volunteer ...
                         </h2>
                     </div>
@@ -214,15 +214,15 @@ const ManageMyPost = () => {
             {/* My Request Volunteers */}
             <h1 className="text-2xl font-bold text-center mt-24 mb-4">Manage and Review Your Volunteer Requests</h1>
             <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200">
+                <table className={`min-w-full ${theme==="light"?"bg-white":"bg-gray-900"} border border-gray-200`}>
                     <thead>
-                        <tr className="bg-gray-100 border-b">
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Serial</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Title</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Description</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Category</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Volunteers Needed</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Actions</th>
+                        <tr className={`${theme==="light"?"bg-gray-200":"bg-gray-800"} border-b`}>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Serial</th>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Title</th>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Description</th>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Category</th>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Volunteers Needed</th>
+                            <th className={`px-6 py-3 text-left text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-300"}`}>Actions</th>
                         </tr>
                     </thead>
 
@@ -231,13 +231,13 @@ const ManageMyPost = () => {
                         &&
                         <tbody>
                             {myRequest.map((post, idx) => (
-                                <tr key={post._id} className="border-b hover:bg-gray-50">
-                                    <td className="px-6 py-3 text-sm text-gray-800">{idx + 1}</td>
-                                    <td className="px-6 py-3 text-sm text-gray-800">{post.title}</td>
-                                    <td className="px-6 py-3 text-sm text-gray-800">{post.description}</td>
-                                    <td className="px-6 py-3 text-sm text-gray-800">{post.category}</td>
-                                    <td className="px-6 py-3 text-sm font-bold text-rose-400">{post.volunteersNeeded}</td>
-                                    <td className="px-6 py-3 flex space-x-2">
+                                <tr key={post._id} className={`border-b ${theme==="light"?"hover:bg-gray-100":"hover:bg-gray-800"} `}>
+                                    <td className={`px-6 py-3 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>{idx + 1}</td>
+                                    <td className={`px-6 py-3 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>{post.title}</td>
+                                    <td className={`px-6 py-3 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>{post.description}</td>
+                                    <td className={`px-6 py-3 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>{post.category}</td>
+                                    <td className={`px-6 py-3 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>{post.volunteersNeeded}</td>
+                                    <td className={`px-6 py-3 text-sm ${theme==="light"?"text-gray-800":"text-gray-400"}`}>
                                         <button
                                             className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs"
                                             onClick={() => handleCancelBtn(post._id)}
@@ -255,8 +255,8 @@ const ManageMyPost = () => {
                 </table>
                 {
                     myRequest.length === 0 &&
-                    <div className=' bg-green-100 '>
-                        <h2 className='h-32 text-3xl font-bold text-gray-300 w-full grid col-span-4 justify-center items-center'>
+                    <div className={`${theme==="light"?"bg-green-100":"bg-gray-900"}`}>
+                        <h2 className={`h-32 text-3xl font-bold ${theme==="light"?"text-gray-300":"text-gray-700"} w-full grid col-span-4 justify-center items-center`}>
                             Not Found Request !
                         </h2>
                     </div>

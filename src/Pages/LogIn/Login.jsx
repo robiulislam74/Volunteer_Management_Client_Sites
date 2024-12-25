@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import { Helmet } from 'react-helmet-async'
 
 const Login = () => {
-  const { signInUser } = UseContext()
+  const { signInUser, theme } = UseContext()
   const navigate = useNavigate()
   const location = useLocation()
   const path = location.state || "/"
@@ -40,12 +40,13 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className={`min-h-screen flex items-center justify-center ${theme==="light"?"bg-gray-50":"bg-[#000000]"}`}>
       <Helmet>
         <title>Volunteer | {paths}</title>
       </Helmet>
-      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-gray-700 text-center mb-4">
+      {/* className={`text-2xl font-bold text-center lg:mb-6 ${theme==="light"?"text-black":"text-black"}`} */}
+      <div className={`${theme==="light"?"bg-white":"bg-gray-900 border border-gray-800"} shadow-md rounded-lg p-8 w-full max-w-md`}>
+        <h2 className={`text-2xl font-semibold ${theme==="light"?"text-black":"text-white"} text-center mb-4`}>
           Login to Your Account
         </h2>
         <form onSubmit={handleSignIn}>

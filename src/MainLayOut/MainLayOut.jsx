@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 
 const MainLayOut = () => {
+  // const [theme, setTheme] = useState('light');
+
+  // useEffect(()=>{
+  //   document.body.className=theme
+  // },[theme])
+
+  // const handleToggleBtn=()=>{
+  //   setTheme((prevTheme)=>(prevTheme === "light" ? "dark":"light"))
+  // }
+
   return (
     <>
-      <header className='bg-[#E5D9F2]/95 sticky top-0 z-50'><Navbar /></header>
+      <header className='bg-[#E5D9F2]/95 sticky top-0 z-50'><Navbar />
+      {/* <button onClick={handleToggleBtn} >Switch to Mode</button> */}
+      </header>
+
         <main className='min-h-[calc(100vh-308px)]'>
         <Outlet/>
         </main>

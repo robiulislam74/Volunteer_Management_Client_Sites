@@ -12,6 +12,17 @@ const AuthProvider = ({children}) => {
     const [user,setUser]=useState(null)
     const [myPosts, setMyPosts] = useState([])
 
+  //  dark/light mode start
+  const [theme, setTheme] = useState('light');
+    
+  useEffect(()=>{
+    document.body.className=theme
+  },[theme])
+
+  const handleToggleBtn=()=>{
+    setTheme((prevTheme)=>(prevTheme === "light" ? "dark":"light"))
+  }
+  //  dark/light mode end
 
     const createSingUp = (email,password)=>{
         setLoading(true)
@@ -51,6 +62,8 @@ const AuthProvider = ({children}) => {
         signOutFunc,
         setMyPosts,
         myPosts,
+        handleToggleBtn,
+        theme,
     }
 
   return (

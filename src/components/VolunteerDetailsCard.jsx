@@ -34,7 +34,7 @@ const customStyles = {
 
 const VolunteerDetailsCard = ({ volunteer }) => {
     const { _id, thumbnail, title, description, category, location, date, volunteersNeeded, organizer_name, organizer_email } = volunteer || {}
-    const { user } = UseContext()
+    const { user,theme } = UseContext()
     const navigate = useNavigate()
     const [startDate, setStartDate] = useState(date);
     let subtitle;
@@ -92,7 +92,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
             <Helmet>
                 <title>Volunteer | {path}</title>
             </Helmet>
-            <div className="max-w-4xl bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-auto p-6">
+            <div className={`max-w-4xl ${theme==='light'?"bg-white":"bg-gray-800"} rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-auto p-6`}>
                 {/* Thumbnail */}
                 <img
                     src={volunteer.thumbnail}
@@ -103,7 +103,7 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                 {/* Card Content */}
                 <div className="mt-6">
                     {/* Title */}
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+                    <h2 className={`text-2xl sm:text-3xl font-bold ${theme==='light'?"text-black":"text-white"}`}>
                         {volunteer.title}
                     </h2>
 
@@ -163,65 +163,65 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                         contentLabel="Example Modal"
                     >
                         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                            <h2 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6">
+                            <h2 className={`text-2xl font-bold text-center lg:mb-6 ${theme==="light"?"text-black":"text-black"}`}>
                                 Volunteer Request Form
                             </h2>
                             <form
                                 onSubmit={handleSubmit}
-                                className="bg-white shadow-lg rounded-lg p-4 sm:p-6 lg:p-8 space-y-4"
+                                className={`${theme==="light"?"bg-white":"bg-gray-900"} shadow-lg rounded-lg p-6 space-y-4`}
                             >
                                 {/* Thumbnail */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                         Thumbnail
                                     </label>
                                     <input
                                         type="url"
                                         name="thumbnail"
                                         defaultValue={thumbnail}
-                                        readOnly
-                                        className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                                        disabled
+                                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     />
                                 </div>
 
                                 {/* Post Title */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                         Post Title
                                     </label>
                                     <input
                                         type="text"
                                         name="title"
                                         defaultValue={title}
-                                        readOnly
-                                        className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                                        disabled
+                                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     />
                                 </div>
 
                                 {/* Description */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                         Description
                                     </label>
                                     <textarea
                                         name="description"
                                         defaultValue={description}
-                                        readOnly
+                                        disabled
                                         rows="4"
-                                        className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     ></textarea>
                                 </div>
 
                                 {/* Category */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                         Category
                                     </label>
                                     <select
                                         name="category"
                                         defaultValue={category}
-                                        readOnly
-                                        className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                                        disabled
+                                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     >
                                         <option>{category}</option>
                                     </select>
@@ -229,44 +229,44 @@ const VolunteerDetailsCard = ({ volunteer }) => {
 
                                 {/* Location */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                         Location
                                     </label>
                                     <input
                                         type="text"
                                         name="location"
                                         defaultValue={location}
-                                        readOnly
-                                        className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                                        disabled
+                                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     />
                                 </div>
 
                                 {/* Volunteers Needed */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                         Volunteers Needed
                                     </label>
                                     <input
                                         type="number"
                                         name="volunteersNeeded"
                                         defaultValue={volunteersNeeded}
-                                        readOnly
-                                        className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                                        disabled
+                                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                     />
                                 </div>
 
                                 {/* Deadline */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                         Deadline
                                     </label>
                                     <div>
                                         <DatePicker
                                             showIcon
-                                            readOnly
+                                            disabled
                                             selected={startDate}
                                             onChange={(date) => setStartDate(date)}
-                                            className="cursor-not-allowed w-full bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1"
+                                            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500`}
                                         />
                                     </div>
                                 </div>
@@ -274,68 +274,68 @@ const VolunteerDetailsCard = ({ volunteer }) => {
                                 {/* Organizer  Info */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">
+                                        <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                             Organizer Name
                                         </label>
                                         <input
                                             type="text"
                                             name="organizer_name"
                                             value={organizer_name}
-                                            readOnly
-                                            className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1"
+                                            disabled
+                                            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">
+                                        <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                             Organizer Email
                                         </label>
                                         <input
                                             type="email"
                                             name="organizer_email"
                                             value={organizer_email}
-                                            readOnly
-                                            className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1"
+                                            disabled
+                                            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                         />
                                     </div>
                                 </div>
                                 {/*Volunteer Info */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">
+                                        <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                         Volunteer Name
                                         </label>
                                         <input
                                             type="text"
                                             name="volunteer_name"
                                             value={user?.displayName}
-                                            readOnly
-                                            className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1"
+                                            disabled
+                                            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">
+                                        <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                         Volunteer Email
                                         </label>
                                         <input
                                             type="email"
                                             name="volunteer_email"
                                             value={user?.email}
-                                            readOnly
-                                            className="block w-full cursor-not-allowed bg-gray-100 border border-gray-300 rounded-lg p-2 mt-1"
+                                            disabled
+                                            className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                         />
                                     </div>
                                 </div>
 
                                 {/* Suggestion */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    <label className={`block text-sm font-medium ${theme==="light"?"text-gray-700":"text-gray-400"}`}>
                                         Suggestion (editable)
                                     </label>
                                     <textarea
                                         name="suggestion"
                                         placeholder="Enter your suggestion"
                                         rows="4"
-                                        className="block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500"
+                                        className={`${theme==="light"?"bg-white":"bg-gray-700"} block w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-blue-500 focus:border-blue-500`}
                                         required
                                     ></textarea>
                                 </div>
