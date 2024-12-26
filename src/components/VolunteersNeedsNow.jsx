@@ -62,7 +62,7 @@ const VolunteersNeedsNow = ({ volunteer }) => {
       </div>
     </div>
       :
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto lg:px-0 px-4">
       <table className={`min-w-full table-auto border-collapse ${theme === 'light' ? 'bg-white' : 'bg-gray-800'} rounded-lg shadow-md overflow-hidden`}>
         <thead>
           <tr className={`${theme === 'light' ? 'bg-gray-200' : 'bg-gray-700'} text-gray-600`}>

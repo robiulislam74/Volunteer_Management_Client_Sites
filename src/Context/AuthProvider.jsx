@@ -58,19 +58,19 @@ const AuthProvider = ({children}) => {
         // JWT Token Set
         if(user?.email){
           const email = user.email
-          axios.post(`http://localhost:5000/jwt`,email,{
+          axios.post(`${import.meta.env.VITE_API_URL}/jwt`,email,{
             withCredentials: true
           })
           .then(res=>{
-            console.log("SignIn Add Token",res.data)
+            // console.log("SignIn Add Token",res.data)
             setLoading(false)
           })
         }else{
-          axios.post('http://localhost:5000/logOut',{},{
+          axios.post(`${import.meta.env.VITE_API_URL}/logOut`,{},{
             withCredentials:true
           })
           .then(res=>{
-            console.log("logOut Remove Token",res.data)
+            // console.log("logOut Remove Token",res.data)
             setLoading(false)
           })
         }

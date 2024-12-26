@@ -9,7 +9,7 @@ import { PiListBold } from "react-icons/pi";
 import UseContext from '../../Context/CustomHook/UseContext'
 
 const AllVolunteerNeedPost = () => {
-  const { handleLayoutControl, show } = UseContext()
+  const { handleLayoutControl, show,theme } = UseContext()
   const [allVolunteers, setAllVolunteers] = useState([])
   const [searchTitle, setSearchTitle] = useState('')
   const locations = useLocation()
@@ -36,7 +36,8 @@ const AllVolunteerNeedPost = () => {
           subTitle={"Discover a wide range of volunteer opportunities across various causes and organizations. This is the place to find meaningful ways to contribute and make an impact"}
         />
       </div>
-      <div className="w-11/12 md:w-6/12 lg:w-5/12 mx-auto mb-10 flex gap-2 items-center">
+      <div className="w-11/12 md:w-6/12 lg:w-5/12 mx-auto mb-10 md:flex md:space-y-0 space-y-6 gap-2 items-center">
+        <div className='flex gap-2 items-center'>
         <label className="input w-full input-bordered flex items-center gap-2">
           <input
             type="text"
@@ -58,16 +59,19 @@ const AllVolunteerNeedPost = () => {
           </svg>
         </label>
         <button className="btn btn-outline btn-accent">Search</button>
+        </div>
         {/* Layout change */}
-        <div onClick={handleLayoutControl} className='ml-6 flex gap-3 text-gray-700 border px-3 py-2'>
+        <div className='inline-block'>
+        <div onClick={handleLayoutControl} className={`lg:ml-6 flex gap-3 ${theme==="light"?"text-gray-700":"text-gray-300"} border px-3 py-2`}>
           <span className='font-medium'>Layout: </span>
           {
             show
               ?
               <PiListBold className='text-2xl' />
               :
-              <BsGrid3X3GapFill className='text-2xl' />
+              <BsGrid3X3GapFill className='text-xl' />
           }
+        </div>
         </div>
       </div>
       {
