@@ -69,6 +69,12 @@ const VolunteerDetailsCard = ({ volunteer }) => {
         formData.date = startDate
         formData.status = "requested"
 
+        if(user?.email === organizer_email){
+            return toast.error("Wrong! You are Organizer this post.", {
+                position: "top-center"
+            });
+        }
+
         axios.post(`${import.meta.env.VITE_API_URL}/requestVolunteer?id=${_id}`, formData)
             .then(res => {
                 if (res.data?.insertedId) {
