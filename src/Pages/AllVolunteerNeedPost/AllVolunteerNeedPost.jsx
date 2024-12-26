@@ -4,9 +4,12 @@ import VolunteersNeedsNow from '../../components/VolunteersNeedsNow'
 import Heading from '../../components/Heading'
 import axios from 'axios'
 import { Helmet } from 'react-helmet-async'
+import { BsGrid3X3GapFill } from "react-icons/bs";
+import { PiListBold } from "react-icons/pi";
+import UseContext from '../../Context/CustomHook/UseContext'
 
 const AllVolunteerNeedPost = () => {
-  // const volunteers = useLoaderData()
+  const { handleLayoutControl, show } = UseContext()
   const [allVolunteers, setAllVolunteers] = useState([])
   const [searchTitle, setSearchTitle] = useState('')
   const locations = useLocation()
@@ -33,7 +36,7 @@ const AllVolunteerNeedPost = () => {
           subTitle={"Discover a wide range of volunteer opportunities across various causes and organizations. This is the place to find meaningful ways to contribute and make an impact"}
         />
       </div>
-      <div className="w-11/12 md:w-6/12 lg:w-4/12 mx-auto mb-10 flex gap-2">
+      <div className="w-11/12 md:w-6/12 lg:w-5/12 mx-auto mb-10 flex gap-2 items-center">
         <label className="input w-full input-bordered flex items-center gap-2">
           <input
             type="text"
@@ -55,13 +58,35 @@ const AllVolunteerNeedPost = () => {
           </svg>
         </label>
         <button className="btn btn-outline btn-accent">Search</button>
+        {/* Layout change */}
+        <div onClick={handleLayoutControl} className='ml-6 flex gap-3 text-gray-700 border px-3 py-2'>
+          <span className='font-medium'>Layout: </span>
+          {
+            show
+              ?
+              <PiListBold className='text-2xl' />
+              :
+              <BsGrid3X3GapFill className='text-2xl' />
+          }
+        </div>
       </div>
-      <div className="max-w-screen-lg mb-24 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-        {allVolunteers.map(volunteer => (
-          <VolunteersNeedsNow key={volunteer._id} volunteer={volunteer} />
-        ))}
-      </div>
-    </div>
+      {
+        show
+          ?
+          <div className="max-w-screen-lg mb-24 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            {allVolunteers.map(volunteer => (
+              <VolunteersNeedsNow key={volunteer._id} volunteer={volunteer} />
+            ))}
+          </div>
+          :
+       <div className="max-w-screen-lg mb-24 mx-auto flex flex-col gap-6">
+            {allVolunteers.map(volunteer => (
+              <VolunteersNeedsNow key={volunteer._id} volunteer={volunteer} />
+            ))}
+          </div>
+      }
+      
+    </div >
 
   )
 }

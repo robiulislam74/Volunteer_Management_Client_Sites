@@ -14,6 +14,9 @@ export default {
       },
       fontFamily:{
         cabin:["Cabin Sketch", "serif"]
+      },
+      backgroundImage:{
+        'bgImg': "url('https://i.ibb.co.com/w0sKTpL/image-5.jpg')"
       }
     },
   },

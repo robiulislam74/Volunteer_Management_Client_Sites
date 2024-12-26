@@ -5,10 +5,14 @@ import Heading from '../../components/Heading'
 import VolunteersNeedsNow from '../../components/VolunteersNeedsNow'
 import { NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import BecomeAVolunteer from '../../components/BecomeAVolunteer'
+import ImpactStories from '../../components/ImpactStories'
+import UseContext from '../../Context/CustomHook/UseContext'
 
 
 const Home = () => {
   const [volunteers, setVolunteers] = useState([])
+  const { theme } = UseContext()
 
   useEffect(() => {
     getVolunteersFunc()
@@ -51,6 +55,49 @@ const Home = () => {
             </button>
           </NavLink>
         </div>
+      </div>
+      {/* Impact Stories Section */}
+      <div className='max-w-screen-lg mx-auto mb-24'>
+        {/* Heading Section */}
+        <div className="mt-4 px-4 md:px-0">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-14 space-y-6 md:space-y-0">
+            {/* Left Section (Heading and Subtitle) */}
+            <div className="space-y-2 md:space-y-4">
+              <p
+                className={`text-sm md:text-base ${theme === "light" ? "text-gray-500" : "text-gray-300"
+                  } uppercase font-semibold tracking-wide`}
+              >
+                Impact Stories
+              </p>
+              <h1
+                className={`text-2xl sm:text-3xl md:text-4xl font-bold ${theme === "light" ? "text-gray-900" : "text-white"
+                  }`}
+              >
+                Today's Essential Reads
+              </h1>
+            </div>
+
+            {/* Right Section (Button) */}
+            <div>
+              <NavLink to={"/allVolunteers"}>
+                <button
+                  className={`text-sm md:text-base font-semibold uppercase text-gray-900 border-b-2 ${theme === "light" ? "border-gray-900" : "border-gray-400"
+                    } hover:text-gray-700 hover:border-gray-700`}
+                >
+                  Get Started Now
+                </button>
+              </NavLink>
+            </div>
+          </div>
+        </div>
+        {/* Impact Stories */}
+        <div>
+          <ImpactStories />
+        </div>
+      </div>
+      {/* Become A volunteer section */}
+      <div>
+        <BecomeAVolunteer />
       </div>
     </div>
 

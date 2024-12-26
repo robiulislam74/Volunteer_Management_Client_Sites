@@ -12,6 +12,12 @@ const AuthProvider = ({children}) => {
     const [loading,setLoading] = useState(true)
     const [user,setUser]=useState(null)
     const [myPosts, setMyPosts] = useState([])
+    const [show,setShow] = useState(true)
+
+    const handleLayoutControl=()=>{
+      setShow(!show)
+    }
+  
 
   //  dark/light mode start
   const [theme, setTheme] = useState('light');
@@ -85,6 +91,9 @@ const AuthProvider = ({children}) => {
         myPosts,
         handleToggleBtn,
         theme,
+        handleLayoutControl,
+        show,
+        setShow
     }
 
   return (
