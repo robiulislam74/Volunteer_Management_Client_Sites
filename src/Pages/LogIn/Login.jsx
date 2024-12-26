@@ -40,13 +40,25 @@ const Login = () => {
   }
 
   return (
-    <div className={`min-h-screen flex items-center justify-center ${theme==="light"?"bg-gray-50":"bg-[#000000]"}`}>
+    <div
+      className={`min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-8 lg:px-16 ${theme === "light" ? "bg-gray-50" : "bg-[#000000]"
+        }`}
+    >
       <Helmet>
         <title>Volunteer | {paths}</title>
       </Helmet>
-      {/* className={`text-2xl font-bold text-center lg:mb-6 ${theme==="light"?"text-black":"text-black"}`} */}
-      <div className={`${theme==="light"?"bg-white":"bg-gray-900 border border-gray-800"} shadow-md rounded-lg p-8 w-full max-w-md`}>
-        <h2 className={`text-2xl font-semibold ${theme==="light"?"text-black":"text-white"} text-center mb-4`}>
+
+      {/* Login Form */}
+      <div
+        className={`${theme === "light"
+            ? "bg-white"
+            : "bg-gray-900 border border-gray-800"
+          } shadow-md rounded-lg p-6 md:mt-0 mt-6 md:p-8 w-full max-w-md`}
+      >
+        <h2
+          className={`text-2xl font-semibold ${theme === "light" ? "text-black" : "text-white"
+            } text-center mb-4`}
+        >
           Login to Your Account
         </h2>
         <form onSubmit={handleSignIn}>
@@ -86,7 +98,7 @@ const Login = () => {
             />
           </div>
 
-          {/* Remember Me */}
+          {/* Forgot Password */}
           <div className="flex items-center justify-between mb-4">
             <a
               href="/forgot-password"
@@ -105,9 +117,9 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Link to Register */}
+        {/* Register Link */}
         <p className="text-sm text-gray-600 text-center mt-4">
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <a
             href="/register"
             className="text-blue-500 hover:underline focus:outline-none"
@@ -115,12 +127,23 @@ const Login = () => {
             Register Now
           </a>
         </p>
-        <div>
+
+        {/* Google Login */}
+        <div className="mt-4">
           <GoogleLogin></GoogleLogin>
         </div>
       </div>
-      <Lottie className='w-[500px]' animationData={singIn_Lotte} loop={true}></Lottie>
+
+      {/* Lottie Animation */}
+      <div className="flex-1 w-full max-w-sm md:max-w-md lg:max-w-lg mt-8 md:mt-0 md:ml-8">
+        <Lottie
+          className="w-full"
+          animationData={singIn_Lotte}
+          loop={true}
+        ></Lottie>
+      </div>
     </div>
+
   )
 }
 

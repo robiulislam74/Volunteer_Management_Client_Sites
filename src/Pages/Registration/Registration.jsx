@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 import { Helmet } from 'react-helmet-async'
 
 const Registration = () => {
-    const { createSingUp,theme } = useContext(AuthContext)
+    const { createSingUp, theme } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     const locations = useLocation()
@@ -75,12 +75,25 @@ const Registration = () => {
     }
 
     return (
-        <div className={`min-h-screen flex items-center justify-center py-16 ${theme==="light"?"bg-gray-50":"bg-[#000000]"}`}>
+        <div
+            className={`min-h-screen flex flex-col md:flex-row items-center justify-center py-8 md:py-16 px-4 ${theme === "light" ? "bg-gray-50" : "bg-[#000000]"
+                }`}
+        >
             <Helmet>
                 <title>Volunteer | {paths}</title>
             </Helmet>
-            <div className={`${theme==="light"?"bg-white":"bg-gray-900 border border-gray-800"} flex-1 shadow-md rounded-lg p-8 w-full max-w-md`}>
-                <h2 className={`text-2xl font-semibold ${theme==="light"?"text-black":"text-white"} text-center mb-4`}>
+
+            {/* Form Section */}
+            <div
+                className={`${theme === "light"
+                        ? "bg-white"
+                        : "bg-gray-900 border border-gray-800"
+                    } flex-1 shadow-md rounded-lg p-6 md:p-8 w-full max-w-md`}
+            >
+                <h2
+                    className={`text-2xl font-semibold ${theme === "light" ? "text-black" : "text-white"
+                        } text-center mb-4`}
+                >
                     Create an Account
                 </h2>
                 <form onSubmit={handleRegistration}>
@@ -152,24 +165,6 @@ const Registration = () => {
                         />
                     </div>
 
-                    {/* Confirm Password */}
-                    {/* <div className="mb-4">
-                        <label
-                            htmlFor="confirmPassword"
-                            className="block text-sm font-medium text-gray-600 mb-1"
-                        >
-                            Confirm Password
-                        </label>
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            name="confirmPassword"
-                            placeholder="Confirm your password"
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring focus:ring-blue-200"
-                        />
-                        </div> */}
-
                     {/* Submit Button */}
                     <button
                         type="submit"
@@ -181,7 +176,7 @@ const Registration = () => {
 
                 {/* Link to Login */}
                 <p className="text-sm text-gray-600 text-center mt-4">
-                    Already have an account?{' '}
+                    Already have an account?{" "}
                     <a
                         href="/login"
                         className="text-blue-500 hover:underline focus:outline-none"
@@ -190,12 +185,17 @@ const Registration = () => {
                     </a>
                 </p>
             </div>
-            <div>
-                <Lottie className='flex-1 w-[500px]' animationData={register_lotte} loop={true}>
-                </Lottie>
-            </div>
 
+            {/* Animation Section */}
+            <div className="flex-1 w-full max-w-md md:max-w-lg lg:max-w-xl mt-8 md:mt-0 md:ml-8">
+                <Lottie
+                    className="w-full"
+                    animationData={register_lotte}
+                    loop={true}
+                ></Lottie>
+            </div>
         </div>
+
     )
 }
 
