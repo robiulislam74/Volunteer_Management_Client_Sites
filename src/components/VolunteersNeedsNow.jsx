@@ -65,7 +65,7 @@ const VolunteersNeedsNow = ({ volunteer }) => {
       <div className="overflow-x-auto lg:px-0 px-4">
       <table className={`min-w-full table-auto border-collapse ${theme === 'light' ? 'bg-white' : 'bg-gray-800'} rounded-lg shadow-md overflow-hidden`}>
         <thead>
-          <tr className={`${theme === 'light' ? 'bg-gray-200' : 'bg-gray-700'} text-gray-600`}>
+          <tr className={`${theme === 'light' ? 'bg-gray-200 text-gray-600' : 'bg-gray-700 text-gray-300'} `}>
             <th className="px-4 py-2 text-left text-xs sm:text-sm md:text-base font-semibold">Thumbnail</th>
             <th className="px-4 py-2 text-left text-xs sm:text-sm md:text-base font-semibold">Title</th>
             <th className="px-4 py-2 text-left text-xs sm:text-sm md:text-base font-semibold">Category</th>
@@ -75,7 +75,7 @@ const VolunteersNeedsNow = ({ volunteer }) => {
           </tr>
         </thead>
         <tbody>
-          <tr className="border-b hover:bg-gray-50 dark:hover:bg-gray-700">
+          <tr className="border-b">
             <td className="px-4 py-2">
               <img
                 src={thumbnail}
@@ -86,8 +86,8 @@ const VolunteersNeedsNow = ({ volunteer }) => {
             <td className={`px-4 py-2 text-sm sm:text-base ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
               {title}
             </td>
-            <td className="px-4 py-2 text-sm sm:text-base text-gray-500">{category}</td>
-            <td className="px-4 py-2 text-sm sm:text-base text-gray-500">{formattedDate}</td>
+            <td className={`px-4 py-2 text-sm sm:text-base ${theme==="light"?"text-gray-500":"text-gray-300"}`}>{category}</td>
+            <td className={`px-4 py-2 text-sm sm:text-base ${theme==="light"?"text-gray-500":"text-gray-300"}`}>{formattedDate}</td>
             <td className="px-4 py-2 text-sm sm:text-base text-rose-400 font-bold">{volunteersNeeded}</td>
             <td className="px-4 py-2">
               <NavLink to={`/volunteerDetails/${_id}`}>
