@@ -73,7 +73,7 @@ const BannerSlider = () => {
     },
   ];
   return (
-    <div className="max-w-screen-lg mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <div className="">
       <Slider {...settings}>
         {slides.map((slide) => (
           <div key={slide.id} className="relative">
@@ -81,14 +81,14 @@ const BannerSlider = () => {
             <img
               src={slide.image}
               alt={slide.title}
-              className="w-full h-48 sm:h-72 md:h-96 object-cover rounded-lg"
+              className="w-full h-48 sm:h-72 md:h-[100vh] object-cover"
             />
             {/* Overlay Content */}
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white rounded-lg p-4 sm:p-8">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-russoOne mb-2 sm:mb-4">
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-12 text-start sm:p-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold font-russoOne mb-2 sm:mb-4">
                 {slide.title}
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-center">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg md:text-center">
                 {slide.description}
               </p>
             </div>

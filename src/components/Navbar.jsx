@@ -17,8 +17,18 @@ const Navbar = () => {
   }
 
   const links = <div className='md:flex navItem items-center text-base font-medium text-gray-600 md:space-x-6'>
-    <NavLink to={"/"}><li>Home</li></NavLink>
-    <NavLink to={"/allVolunteers"}><li>All volunteer Need posts</li></NavLink>
+    <NavLink to={"/"}><li className='hover:text-blue-700 hover:font-medium'>Home</li></NavLink>
+    <NavLink to={"/allVolunteers"}><li className='hover:text-blue-700 hover:font-medium'>All volunteer Need posts</li></NavLink>
+    <NavLink to={'/addVolunteer'}>
+                      <li className='hover:text-blue-700 hover:font-medium'>
+                        Add Volunteer need Post
+                      </li>
+                    </NavLink>
+                    <NavLink to={'/manageMyPost'}>
+                      <li className='hover:text-blue-700 hover:font-medium'>
+                        Manage My Posts
+                      </li>
+                    </NavLink>
     {/* toggle button */}
     <label onClick={handleToggleBtn} className="flex cursor-pointer gap-2">
       <svg

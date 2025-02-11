@@ -56,6 +56,10 @@ const Home = () => {
           </NavLink>
         </div>
       </div>
+      {/* Become A volunteer section */}
+      <div>
+        <BecomeAVolunteer />
+      </div>
       {/* Impact Stories Section */}
       <div className='max-w-screen-lg mx-auto mb-24'>
         {/* Heading Section */}
@@ -94,10 +98,6 @@ const Home = () => {
         <div>
           <ImpactStories />
         </div>
-      </div>
-      {/* Become A volunteer section */}
-      <div>
-        <BecomeAVolunteer />
       </div>
     </div>
 

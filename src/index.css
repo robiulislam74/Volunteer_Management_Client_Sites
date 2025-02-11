@@ -7,14 +7,13 @@
 
 body{
   font-family: "Roboto", serif; 
-  background-color: #FAFAFA;;
+  background-color: #FAFAF5;
 }
 
 .navItem .active li{
   color: blue;
   font-weight: 600;
-  /* text-decoration: underline; */
-  border: 1px solid blue;
+  text-decoration: underline;
   padding: 4px 6px;
   border-radius: 6px;
   /* background-color: #E5D9F2; */
