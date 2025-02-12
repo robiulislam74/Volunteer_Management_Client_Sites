@@ -1,4 +1,3 @@
-import { div } from 'motion/react-client';
 import React from 'react'
 import { FcGoogle } from "react-icons/fc";
 import UseContext from '../Context/CustomHook/UseContext';
@@ -22,9 +21,7 @@ const GoogleLogin = () => {
                       showConfirmButton: false,
                       timer: 2000
                     });
-            // console.log("Google Login Successful:",result.user)
         }).catch((error)=>{
-            // console.log("Error:",error.message)
         })
     }
   return (
