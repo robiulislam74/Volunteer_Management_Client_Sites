@@ -5,15 +5,6 @@ import Footer from '../components/Footer'
 
 
 const MainLayOut = () => {
-  // const [theme, setTheme] = useState('light');
-
-  // useEffect(()=>{
-  //   document.body.className=theme
-  // },[theme])
-
-  // const handleToggleBtn=()=>{
-  //   setTheme((prevTheme)=>(prevTheme === "light" ? "dark":"light"))
-  // }
 
   return (
     <>
