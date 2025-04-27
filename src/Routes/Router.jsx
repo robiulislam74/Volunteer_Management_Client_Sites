@@ -11,6 +11,9 @@ import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import VolunteerDetails from "../Pages/VolunteerDetails/VolunteerDetails";
 import ManageMyPost from "../Pages/ManageMyPost/ManageMyPost";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import Profile from "../components/Profile";
+import UpdateProfile from "../components/UpdateProfile";
 
   const router = createBrowserRouter([
     {
@@ -54,7 +57,19 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
             <ManageMyPost/>
           </PrivateRoutes>
         },
-      ]
+        {
+          path: '/dashboard',
+          element: <PrivateRoutes>
+            <Dashboard/>
+          </PrivateRoutes>,
+          children: [
+            {
+              path: '/dashboard',
+              element: <Profile/>
+            },
+          ]
+        }
+      ] ,
     },
   ]);
 

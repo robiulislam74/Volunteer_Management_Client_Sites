@@ -15,7 +15,7 @@ const Navbar = () => {
       });
   }
 
-  const links = <div className='md:flex navItem items-center text-base font-medium text-gray-600 md:space-x-6'>
+  const links = <div className='md:flex navItem items-center text-base font-medium text-gray-600 md:space-x-4'>
     <NavLink to={"/"}><li className='hover:text-blue-700 hover:font-medium'>Home</li></NavLink>
     <NavLink to={"/allVolunteers"}><li className='hover:text-blue-700 hover:font-medium'>All volunteer Need posts</li></NavLink>
     <NavLink to={'/addVolunteer'}>
@@ -28,6 +28,14 @@ const Navbar = () => {
                         Manage My Posts
                       </li>
                     </NavLink>
+                    {
+                      user && 
+                      <NavLink to={'/dashboard'}>
+                      <li className='hover:text-blue-700 hover:font-medium'>
+                        Dashboard
+                      </li>
+                    </NavLink>
+                    }
     {/* toggle button */}
     <label onClick={handleToggleBtn} className="flex cursor-pointer gap-2">
       <svg
